@@ -20,6 +20,7 @@ public class DepartmentReport extends JPanel{
 	JTextField depNumField;
 	JButton button;
 	JLabel body;
+	JLabel label;
 	
 	ArrayList<Department> d;
 	
@@ -40,13 +41,18 @@ public class DepartmentReport extends JPanel{
 		switchSalesButton.setActionCommand("employee");
 		switchSalesButton.addActionListener(new ButtonClickListener());
 		
+		label = new JLabel("Enter Department");
+		
 		depNumField = new JTextField(10);
 		
 		body = new JLabel("");
 		
+		
+		add(label);
 		add(depNumField);
 		add(button);
 		add(body);
+		
 		add(switchEmployeeButton);
 		add(switchSalesButton);
 		
