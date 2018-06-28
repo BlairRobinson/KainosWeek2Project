@@ -24,8 +24,8 @@ public class DBConnector {
 		try {
 			//Class.forName("com.mysql.jdbc.Driver");
 
-			user 		= "peter";
-			password 	= "password";
+			user 		= "blair";
+			password 	= "4DFSRTES5";
 			host	 	= "localhost";
 
 			if (user == null || password == null || host == null)
@@ -160,6 +160,44 @@ public class DBConnector {
 			prep.setInt(8, emp.getDepartmentNumber());
 			
 			prep.execute();
+			System.out.println("Successfully added");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Errror adding employee");
+		}
+		
+		
+	}
+	
+	public static void addSalesEmployee(Employee emp) {
+		if (c == null) {
+			c = getConnection();
+		}
+		String query = "insert into employee (fname, lname, address, nin, account_number, sort_code, starting_salary, department_id)"
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		String query2 = "insert into sales_employee (employee_id, sales_total, commission_rate)" 
+		+ " values(?, ?, ?)";
+	
+		
+		try {
+			PreparedStatement prep = c.prepareStatement(query);
+			prep.setString(1, emp.getFname());
+			prep.setString(2, emp.getLname());
+			prep.setString(3, emp.getAddress());
+			prep.setString(4, emp.getNIN());
+			prep.setString(5, emp.getBankNumber());
+			prep.setString(6, emp.getSortCode());
+			prep.setFloat(7, emp.getStartingSalary());
+			prep.setInt(8, emp.getDepartmentNumber());
+			
+			prep.execute();
+			
+			prep = c.prepareStatement(query2);
+			prep.setInt(1, emp.getEmployeeNumber());
+			//prep.setDouble);
+			
+			
 			System.out.println("Successfully added");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -10,11 +10,17 @@ public class Frame extends JFrame{
 	
 	DepartmentReport dReport;
 	Panel panel;
+	SalesEmployee employee;
 	
 	public Frame(ArrayList<Department> d) {
-		panel = new Panel(this);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		add(panel);
+//		panel = new Panel(this);
+//		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+//		add(panel);
+		
+		
+		employee = new SalesEmployee(this);
+		employee.setLayout(new BoxLayout(employee, BoxLayout.PAGE_AXIS));
+		add(employee);
 		
 		dReport = new DepartmentReport(d);
 		
