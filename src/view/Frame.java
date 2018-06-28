@@ -2,20 +2,27 @@ package view;
 
 import javax.swing.JFrame;
 import Middle.Employee;
+import java.util.ArrayList;
+import Middle.Department;
 
 public class Frame extends JFrame{
 	
-	Employee e;
+	DepartmentReport dReport;
+	Panel panel;
 	
-	public Frame(Employee e) {
-		add(new Panel(e));
+	public Frame(ArrayList<Department> d) {
+		panel = new Panel(this);
+		add(panel);
+		
+		dReport = new DepartmentReport(d);
 		
 		setVisible(true);
 		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		this.e = e;
 	}
 	
-	
+	public void switchToDReport() {
+		remove(panel);
+		add(dReport);
+	}
 }
