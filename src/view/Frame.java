@@ -10,17 +10,26 @@ public class Frame extends JFrame{
 	
 	DepartmentReport dReport;
 	Panel panel;
+
+	NetPayReport nReport;
+
 	SalesEmployee employee;
+
 	
-	public Frame(ArrayList<Department> d) {
+	public Frame(ArrayList<Department> d,ArrayList<Employee> e) {
 		panel = new Panel(this);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		add(panel);
 		
+
+		dReport = new DepartmentReport(d);
+		nReport = new NetPayReport(e);
+
 		employee = new SalesEmployee(this);
 		employee.setLayout(new BoxLayout(employee, BoxLayout.PAGE_AXIS));
 		
 		dReport = new DepartmentReport(d, this);
+
 		
 		setVisible(true);
 		setSize(500, 500);
@@ -49,5 +58,11 @@ public class Frame extends JFrame{
 		panel.setVisible(false);
 		employee.setVisible(true);
 		dReport.setVisible(false);
+	}
+	public void switchToNReport() {
+		add(nReport);
+		
+		panel.setVisible(false);
+		nReport.setVisible(true);
 	}
 }
