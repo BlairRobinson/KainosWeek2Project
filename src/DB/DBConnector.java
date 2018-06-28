@@ -31,7 +31,6 @@ public class DBConnector {
 			if (user == null || password == null || host == null)
 				throw new IllegalArgumentException(
 						"Properties file must exist and must contain user, password, and host properties.");
-
 			c = DriverManager.getConnection("jdbc:mysql://" + host + "/company?useSSL=false", user, password);
 			return c;
 

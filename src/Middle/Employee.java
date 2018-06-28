@@ -1,6 +1,6 @@
 package Middle;
 
-public class Employee {
+public class Employee implements employeeInterface {
 	
 	protected String fname;
 	protected String lname;
