@@ -8,6 +8,7 @@ public class Employee {
 	protected String bankNumber;
 	protected String sortCode;
 	protected float startingSalary;
+	protected int departmentNumber;
 	protected int employeeNumber;
 	
 	public Employee() {
@@ -19,7 +20,7 @@ public class Employee {
 		this.name = name;
 	}
 	
-	public Employee(String name, String address, String nIN, String bankNumber, String sortCode, float startingSalary, int employeeNumber) {
+	public Employee(String name, String address, String nIN, String bankNumber, String sortCode, float startingSalary,int departmentNumber, int employeeNumber) {
 		this();
 		this.name = name;
 		this.address = address;
@@ -27,6 +28,7 @@ public class Employee {
 		this.bankNumber = bankNumber;
 		this.sortCode = sortCode;
 		this.startingSalary = startingSalary;
+		this.departmentNumber = departmentNumber;
 		this.employeeNumber = employeeNumber;
 	}
 	
