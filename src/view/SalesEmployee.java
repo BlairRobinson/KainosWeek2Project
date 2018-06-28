@@ -31,11 +31,16 @@ private JLabel body;
 	Frame frame;
 	
 	public SalesEmployee(Frame f) {
+		frame = f;
 		
 		//Gets employee
 		JButton button = new JButton("Submit");
 		button.setActionCommand("Submit");
 		button.addActionListener(new ButtonClickListener());
+		
+		JButton switchEmployeeButton = new JButton("None Sales Employee");
+		switchEmployeeButton.setActionCommand("employee2");
+		switchEmployeeButton.addActionListener(new ButtonClickListener());
 		
 		JButton switchButton = new JButton("Department Report");
 		switchButton.setActionCommand("switch");
@@ -73,6 +78,7 @@ private JLabel body;
 		
 		
 		add(button);
+		add(switchEmployeeButton);
 		
 		body = new JLabel("", JLabel.CENTER);
 		
@@ -139,6 +145,9 @@ private JLabel body;
 			}
 			if(ev.getActionCommand().equals("switch")) {
 				frame.switchToDReport();
+			}
+			if(ev.getActionCommand().equals("employee2")) {
+				frame.switchToEmployee();
 			}
 		}
 	}

@@ -38,6 +38,11 @@ public class Panel extends JPanel {
 		button.setActionCommand("Submit");
 		button.addActionListener(new ButtonClickListener());
 		
+		JButton switchSalesButton = new JButton("Sales Employee");
+		switchSalesButton.setActionCommand("employee");
+		switchSalesButton.addActionListener(new ButtonClickListener());
+		
+		
 		JButton switchButton = new JButton("Department Report");
 		switchButton.setActionCommand("switch");
 		switchButton.addActionListener(new ButtonClickListener());
@@ -73,6 +78,7 @@ public class Panel extends JPanel {
 		body = new JLabel("", JLabel.CENTER);
 		
 		add(body);
+		add(switchSalesButton);
 		add(switchButton);
 	}
 
@@ -121,6 +127,9 @@ public class Panel extends JPanel {
 			}
 			if(ev.getActionCommand().equals("switch")) {
 				frame.switchToDReport();
+			}
+			if(ev.getActionCommand().equals("employee")) {
+				frame.switchToSales();
 			}
 		}
 	}
