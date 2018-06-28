@@ -2,7 +2,8 @@ package Middle;
 
 public class Employee {
 	
-	protected String name;
+	protected String fname;
+	protected String lname;
 	protected String address;
 	protected String nIN;
 	protected String bankNumber;
@@ -10,19 +11,12 @@ public class Employee {
 	protected float startingSalary;
 	protected int departmentNumber;
 	protected int employeeNumber;
+
+
 	
-	public Employee() {
-		
-	}
-	
-	public Employee(String name) {
-		this();
-		this.name = name;
-	}
-	
-	public Employee(String name, String address, String nIN, String bankNumber, String sortCode, float startingSalary,int departmentNumber, int employeeNumber) {
-		this();
-		this.name = name;
+	public Employee(String fname, String lname, String address, String nIN, String bankNumber, String sortCode, float startingSalary,int departmentNumber, int employeeNumber) {
+		this.fname = fname;
+		this.lname = lname;
 		this.address = address;
 		this.nIN = nIN;
 		this.bankNumber = bankNumber;
@@ -32,9 +26,7 @@ public class Employee {
 		this.employeeNumber = employeeNumber;
 	}
 	
-	public String getName() {
-		return name;
-	}
+	
 	
 	public String getAddress() {
 		return address;
@@ -60,10 +52,32 @@ public class Employee {
 		return employeeNumber;
 	}
 	
-	public void setName(String newName) {
-		name = newName;
-	}
 	
+	
+	public String getFname() {
+		return fname;
+	}
+
+
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+
+
+	public String getLname() {
+		return lname;
+	}
+
+
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+
+
 	public void setAddress(String newAddress) {
 		address = newAddress;
 	}
@@ -86,5 +100,17 @@ public class Employee {
 	
 	public void setEmployeeNumber(int newEmployeeNumber) {
 		employeeNumber = newEmployeeNumber;
+	}
+
+
+
+	public int getDepartmentNumber() {
+		return departmentNumber;
+	}
+
+
+
+	public void setDepartmentNumber(int departmentNumber) {
+		this.departmentNumber = departmentNumber;
 	}
 }

@@ -1,12 +1,12 @@
 
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Properties;
 
 import Middle.Department;
 import Middle.Employee;
@@ -51,7 +51,8 @@ public class DBConnector {
 			ResultSet rows = s.executeQuery(
 					"SELECT * from employee");
 			while (rows.next()) {
-				emps.add(new Employee( rows.getString("fname") + " " + rows.getString("lname"),
+				emps.add(new Employee( rows.getString("fname"),
+						rows.getString("lname"),
 						rows.getString("address"), 
 						rows.getString("nin"), 
 						rows.getString("account_number"), 
@@ -84,7 +85,8 @@ public class DBConnector {
 				ResultSet rows = s.executeQuery(
 						"SELECT * from employee WHERE department_id = 1");
 				while (rows.next()) {
-					emps1.add(new Employee( rows.getString("fname") + " " + rows.getString("lname"),
+					emps1.add(new Employee( rows.getString("fname"),
+							rows.getString("lname"),
 							rows.getString("address"), 
 							rows.getString("nin"), 
 							rows.getString("account_number"), 
@@ -100,7 +102,8 @@ public class DBConnector {
 				rows=s.executeQuery("SELECT * from employee WHERE department_id = 2");
 				
 				while (rows.next()) {
-					emps2.add(new Employee( rows.getString("fname") + " " + rows.getString("lname"),
+					emps2.add(new Employee( rows.getString("fname"),
+							rows.getString("lname"),
 							rows.getString("address"), 
 							rows.getString("nin"), 
 							rows.getString("account_number"), 
@@ -117,7 +120,8 @@ public class DBConnector {
 				rows=s.executeQuery("SELECT * from employee WHERE department_id = 3");
 				
 				while (rows.next()) {
-					emps3.add(new Employee( rows.getString("fname") + " " + rows.getString("lname"),
+					emps3.add(new Employee( rows.getString("fname"),
+							rows.getString("lname"),
 							rows.getString("address"), 
 							rows.getString("nin"), 
 							rows.getString("account_number"), 
@@ -134,6 +138,34 @@ public class DBConnector {
 				e.printStackTrace();
 			}
 		return deps;
+	}
+	
+	public static void addEmployee(Employee emp) {
+		if (c == null) {
+			c = getConnection();
+		}
+		String query = "insert into employee (fname, lname, address, nin, account_number, sort_code, starting_salary, department_id)"
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			PreparedStatement prep = c.prepareStatement(query);
+			prep.setString(1, emp.getFname());
+			prep.setString(2, emp.getLname());
+			prep.setString(3, emp.getAddress());
+			prep.setString(4, emp.getNIN());
+			prep.setString(5, emp.getBankNumber());
+			prep.setString(6, emp.getSortCode());
+			prep.setFloat(7, emp.getStartingSalary());
+			prep.setInt(8, emp.getDepartmentNumber());
+			
+			prep.execute();
+			System.out.println("Successfully added");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Errror adding employee");
+		}
+		
+		
 	}
 }
 

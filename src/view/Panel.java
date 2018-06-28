@@ -41,8 +41,8 @@ public class Panel extends JPanel {
 	public class ButtonClickListener implements ActionListener{
 		public void actionPerformed(ActionEvent ev) {
 			if(ev.getActionCommand().equals("Employees")) {
-				System.out.println(e.getName());
-				body.setText(e.getName());
+				System.out.println(e.getFname());
+				body.setText(e.getFname());
 			}
 		}
 	}
