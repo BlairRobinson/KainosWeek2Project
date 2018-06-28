@@ -22,7 +22,7 @@ public class Frame extends JFrame{
 		add(panel);
 		
 
-		dReport = new DepartmentReport(d);
+		dReport = new DepartmentReport(d, this);
 		nReport = new NetPayReport(e);
 
 		employee = new SalesEmployee(this);
