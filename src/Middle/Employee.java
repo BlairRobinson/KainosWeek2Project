@@ -19,7 +19,6 @@ public class Employee {
 		this.name = name;
 	}
 	
-	
 	public Employee(String name, String address, String nIN, String bankNumber, String sortCode, float startingSalary, int employeeNumber) {
 		this();
 		this.name = name;

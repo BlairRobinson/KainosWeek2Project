@@ -22,9 +22,6 @@ public class DBConnector {
 		try {
 			//Class.forName("com.mysql.jdbc.Driver");
 
-			Properties props = new Properties();
-			props.load(new FileInputStream("employeesdb.properties"));
-
 			user 		= "peter";
 			password 	= "password";
 			host	 	= "localhost";
@@ -33,7 +30,7 @@ public class DBConnector {
 				throw new IllegalArgumentException(
 						"Properties file must exist and must contain user, password, and host properties.");
 
-			c = DriverManager.getConnection("jdbc:mysql://" + host + "/employees?useSSL=false", user, password);
+			c = DriverManager.getConnection("jdbc:mysql://" + host + "/company?useSSL=false", user, password);
 			return c;
 
 		} catch (Exception e) {

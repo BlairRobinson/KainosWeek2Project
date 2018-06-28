@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import Middle.Department;
 import Middle.Employee;
+import view.Frame;
 
 public class EmployeeProject {
 
@@ -20,6 +21,7 @@ public class EmployeeProject {
 		for(Employee e: bigEmps)
 		{
 			System.out.println(e.getName());
+			Frame frame = new Frame(e);
 		}
 	}
 }
