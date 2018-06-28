@@ -31,4 +31,32 @@ public class salesEmployee extends Employee implements employeeInterface{
 	public float getNetPay() {
 		return (float) ((startingSalary * .75) + (salesTotal * commissionRate));
 	}
+
+
+
+	public float getCommissionRate() {
+		return commissionRate;
+	}
+
+
+
+	public void setCommissionRate(float commissionRate) {
+		this.commissionRate = commissionRate;
+	}
+
+
+
+	public float getSalesTotal() {
+		return salesTotal;
+	}
+
+
+
+	public void setSalesTotal(float salesTotal) {
+		this.salesTotal = salesTotal;
+	}
+	
+	
+
+
 }

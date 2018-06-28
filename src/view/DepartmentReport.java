@@ -20,21 +20,41 @@ public class DepartmentReport extends JPanel{
 	JTextField depNumField;
 	JButton button;
 	JLabel body;
+	JLabel label;
 	
 	ArrayList<Department> d;
 	
-	public DepartmentReport(ArrayList<Department> d) {
+	Frame frame;
+	
+	public DepartmentReport(ArrayList<Department> d, Frame f) {
+		frame = f;
+		
 		button = new JButton("Get department");
 		button.setActionCommand("Submit");
 		button.addActionListener(new ButtonClickListener());
+		
+		JButton switchEmployeeButton = new JButton("None Sales Employee");
+		switchEmployeeButton.setActionCommand("employee2");
+		switchEmployeeButton.addActionListener(new ButtonClickListener());
+		
+		JButton switchSalesButton = new JButton("Sales Employee");
+		switchSalesButton.setActionCommand("employee");
+		switchSalesButton.addActionListener(new ButtonClickListener());
+		
+		label = new JLabel("Enter Department");
 		
 		depNumField = new JTextField(10);
 		
 		body = new JLabel("");
 		
+		
+		add(label);
 		add(depNumField);
 		add(button);
 		add(body);
+		
+		add(switchEmployeeButton);
+		add(switchSalesButton);
 		
 		this.d = d;
 	}
@@ -61,6 +81,12 @@ public class DepartmentReport extends JPanel{
 				text += "</html>";
 				
 				body.setText(text);
+			}
+			if(ev.getActionCommand().equals("employee2")) {
+				frame.switchToEmployee();
+			}
+			if(ev.getActionCommand().equals("employee")) {
+				frame.switchToSales();
 			}
 		}
 	}

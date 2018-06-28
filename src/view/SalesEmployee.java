@@ -1,23 +1,21 @@
 package view;
 
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import DB.DBConnector;
-
-import javax.swing.JLabel;
-
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import Middle.Employee;
+import Middle.salesEmployee;
+import view.Panel.ButtonClickListener;
 
-public class Panel extends JPanel {
-	
-	private JLabel body;
+public class SalesEmployee extends JPanel {
+private JLabel body;
 	
 	protected JTextField fNameField;
 	protected JTextField lNameField;
@@ -27,28 +25,26 @@ public class Panel extends JPanel {
 	protected JTextField sCField;
 	protected JTextField salaryField;
 	protected JTextField empNumField;
+	protected JTextField totalSalesField;
+	protected JTextField commissionRate;
 	
 	Frame frame;
-
-	public Panel(Frame frame) {
-		this.frame = frame;
+	
+	public SalesEmployee(Frame f) {
+		frame = f;
 		
 		//Gets employee
 		JButton button = new JButton("Submit");
 		button.setActionCommand("Submit");
 		button.addActionListener(new ButtonClickListener());
 		
-		JButton switchSalesButton = new JButton("Sales Employee");
-		switchSalesButton.setActionCommand("employee");
-		switchSalesButton.addActionListener(new ButtonClickListener());
-		
+		JButton switchEmployeeButton = new JButton("None Sales Employee");
+		switchEmployeeButton.setActionCommand("employee2");
+		switchEmployeeButton.addActionListener(new ButtonClickListener());
 		
 		JButton switchButton = new JButton("Department Report");
-		JButton NetPayButton = new JButton("Net Pay Report");
 		switchButton.setActionCommand("switch");
 		switchButton.addActionListener(new ButtonClickListener());
-		NetPayButton.setActionCommand("NetPayReportClick");
-		NetPayButton.addActionListener(new ButtonClickListener());
 		
 		fNameField = new JTextField(20);
 		lNameField = new JTextField(20);
@@ -58,6 +54,8 @@ public class Panel extends JPanel {
 		sCField = new JTextField(20);
 		salaryField = new JTextField(20);
 		empNumField = new JTextField(20);
+		totalSalesField = new JTextField(20);
+		commissionRate = new JTextField(20);
 		
 		add(new JLabel("First Name: "));
 		add(fNameField);
@@ -73,17 +71,19 @@ public class Panel extends JPanel {
 		add(sCField);
 		add(new JLabel("Starting Salary: "));
 		add(salaryField);
-		add(new JLabel("Employee Number: "));
-		add(empNumField);
+		add(new JLabel("Total Sales: "));
+		add(totalSalesField);
+		add(new JLabel("Commission: "));
+		add(commissionRate);
+		
 		
 		add(button);
+		add(switchEmployeeButton);
 		
 		body = new JLabel("", JLabel.CENTER);
 		
 		add(body);
-		add(switchSalesButton);
 		add(switchButton);
-		add(NetPayButton);
 	}
 
 	public void paint(Graphics g) {
@@ -104,7 +104,7 @@ public class Panel extends JPanel {
 		public void actionPerformed(ActionEvent ev) {
 			if(ev.getActionCommand().equals("Submit")) {
 				System.out.println(fNameField.getText());
-				Employee e = new Employee(
+				salesEmployee e = new salesEmployee(
 						fNameField.getText(), 
 						lNameField.getText(),
 						addressField.getText(), 
@@ -113,12 +113,26 @@ public class Panel extends JPanel {
 						sCField.getText(),
 						floatConvert(salaryField.getText()),
 						1,
-						Integer.parseInt(empNumField.getText())
+						0,
+						floatConvert(commissionRate.getText()),
+						floatConvert(totalSalesField.getText())
 						);
 				
-				System.out.println("Submitted");
+				System.out.println("Submitted Sales Employee");
 				
-				DBConnector.addEmployee(e);
+				DBConnector.addSalesEmployee(e);
+				DBConnector.addToSales(e);
+				
+				fNameField.setText("");
+				lNameField.setText("");
+				addressField.setText("");
+				nINField.setText("");
+				bNField.setText("");
+				sCField.setText("");
+				salaryField.setText("");
+				totalSalesField.setText("");
+				commissionRate.setText("");
+				
 				/*
 				protected JTextField nameField;
 				protected JTextField addressField;
@@ -132,13 +146,10 @@ public class Panel extends JPanel {
 			if(ev.getActionCommand().equals("switch")) {
 				frame.switchToDReport();
 			}
-
-			else if(ev.getActionCommand().equals("NetPayReportClick")) {
-				frame.switchToNReport();			}
-
-			if(ev.getActionCommand().equals("employee")) {
-				frame.switchToSales();
+			if(ev.getActionCommand().equals("employee2")) {
+				frame.switchToEmployee();
 			}
 		}
 	}
 }
+
