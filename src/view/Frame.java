@@ -1,5 +1,6 @@
 package view;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import Middle.Employee;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class Frame extends JFrame{
 	
 	public Frame(ArrayList<Department> d) {
 		panel = new Panel(this);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		add(panel);
 		
 		dReport = new DepartmentReport(d);
