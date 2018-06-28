@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import Middle.Department;
 import Middle.Employee;
+import Middle.salesEmployee;
 
 public class DBConnector {
 
@@ -168,15 +169,14 @@ public class DBConnector {
 		
 	}
 	
-	public static void addSalesEmployee(Employee emp) {
+	public static void addSalesEmployee(salesEmployee emp) {
 		if (c == null) {
 			c = getConnection();
 		}
 		String query = "insert into employee (fname, lname, address, nin, account_number, sort_code, starting_salary, department_id)"
 				+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		String query2 = "insert into sales_employee (employee_id, sales_total, commission_rate)" 
-		+ " values(?, ?, ?)";
+	
 	
 		
 		try {
@@ -190,11 +190,7 @@ public class DBConnector {
 			prep.setFloat(7, emp.getStartingSalary());
 			prep.setInt(8, emp.getDepartmentNumber());
 			
-			prep.execute();
-			
-			prep = c.prepareStatement(query2);
-			prep.setInt(1, emp.getEmployeeNumber());
-			//prep.setDouble);
+			prep.execute();	
 			
 			
 			System.out.println("Successfully added");
@@ -203,6 +199,25 @@ public class DBConnector {
 			System.out.println("Errror adding employee");
 		}
 		
+		
+	}
+	
+	public static void addToSales(salesEmployee e) {
+		String query2 = "insert into sales_employee(employee_id, sales_total, commission_rate)"
+				+ "values((select max(employee_id) from employee), "+e.getSalesTotal()+", " + e.getCommissionRate()+");";
+		
+		System.out.println(query2);
+		
+		PreparedStatement prep2;
+		try {
+			
+			prep2 = c.prepareStatement(query2);
+			
+			prep2.execute();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 	}
 }
