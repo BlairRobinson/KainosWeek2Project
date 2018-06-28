@@ -1,5 +1,7 @@
 package Middle;
 
+import java.util.ArrayList;
+
 public class Employee implements employeeInterface {
 	
 	protected String fname;
@@ -11,6 +13,7 @@ public class Employee implements employeeInterface {
 	protected float startingSalary;
 	protected int departmentNumber;
 	protected int employeeNumber;
+	protected static ArrayList<Employee> employees;
 
 
 	
@@ -50,6 +53,9 @@ public class Employee implements employeeInterface {
 	
 	public int getEmployeeNumber() {
 		return employeeNumber;
+	}
+	public float getNetPay() {
+		return (float) (startingSalary * .75);
 	}
 	
 	

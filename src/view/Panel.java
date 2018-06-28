@@ -39,8 +39,11 @@ public class Panel extends JPanel {
 		button.addActionListener(new ButtonClickListener());
 		
 		JButton switchButton = new JButton("Department Report");
+		JButton NetPayButton = new JButton("Net Pay Report");
 		switchButton.setActionCommand("switch");
 		switchButton.addActionListener(new ButtonClickListener());
+		NetPayButton.setActionCommand("NetPayReportClick");
+		NetPayButton.addActionListener(new ButtonClickListener());
 		
 		fNameField = new JTextField(20);
 		lNameField = new JTextField(20);
@@ -74,6 +77,7 @@ public class Panel extends JPanel {
 		
 		add(body);
 		add(switchButton);
+		add(NetPayButton);
 	}
 
 	public void paint(Graphics g) {
@@ -122,6 +126,8 @@ public class Panel extends JPanel {
 			if(ev.getActionCommand().equals("switch")) {
 				frame.switchToDReport();
 			}
+			else if(ev.getActionCommand().equals("NetPayReportClick")) {
+				frame.switchToNReport();			}
 		}
 	}
 }

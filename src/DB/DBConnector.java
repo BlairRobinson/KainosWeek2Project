@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import Middle.Department;
 import Middle.Employee;
+import Middle.salesEmployee;
 
 public class DBConnector {
 
@@ -60,6 +61,39 @@ public class DBConnector {
 						rows.getFloat("starting_salary"), 
 						rows.getInt("department_id"),
 						rows.getInt("employee_id")
+						));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return emps;
+
+	}
+	
+
+	public static ArrayList<salesEmployee> getSalesEmployees() {
+
+		if (c == null) {
+			c = getConnection();
+		}
+		ArrayList<salesEmployee> emps = new ArrayList<salesEmployee>();
+		try {
+			Statement s = c.createStatement();
+			ResultSet rows = s.executeQuery(
+					"SELECT * from sales_employees");
+			while (rows.next()) {
+				emps.add(new salesEmployee( rows.getString("fname"),
+						rows.getString("lname"),
+						rows.getString("address"), 
+						rows.getString("nin"), 
+						rows.getString("account_number"), 
+						rows.getString("sort_code"), 
+						rows.getFloat("starting_salary"), 
+						rows.getInt("department_id"),
+						rows.getInt("employee_id"),
+						rows.getInt("commissionRate"),
+						rows.getInt("totalSales")
 						));
 			}
 		} catch (Exception e) {

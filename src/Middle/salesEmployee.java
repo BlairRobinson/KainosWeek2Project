@@ -25,7 +25,10 @@ public class salesEmployee extends Employee implements employeeInterface{
 
 
 	public float getStartingSalary() {
-		return startingSalary * (salesTotal * commissionRate);
+		return startingSalary + (salesTotal * commissionRate);
 	}
-
+	
+	public float getNetPay() {
+		return (float) ((startingSalary * .75) + (salesTotal * commissionRate));
+	}
 }
