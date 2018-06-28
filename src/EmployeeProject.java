@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import Middle.Department;
 import Middle.Employee;
 
@@ -14,5 +16,10 @@ public class EmployeeProject {
 	
 	public static void main(String args[]) {
 		new EmployeeProject();
+		ArrayList<Employee> bigEmps = DBConnector.getEmployees();
+		for(Employee e: bigEmps)
+		{
+			System.out.println(e.getName());
+		}
 	}
 }
