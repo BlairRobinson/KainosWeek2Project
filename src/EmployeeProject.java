@@ -1,3 +1,4 @@
+import DB.DBConnector;
 import Middle.Employee;
 
 public class EmployeeProject {
@@ -10,7 +11,5 @@ public class EmployeeProject {
 ////			Frame frame = new Frame(d);
 //		}
 		
-		Employee test = new Employee("James", "Smith", "1 Park Inn Way", "234567891", "23432145654", "23-09-89", 40000, 1, 5 );
-		DBConnector.addEmployee(test);
 	}
 }
