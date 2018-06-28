@@ -24,7 +24,7 @@ public class Frame extends JFrame{
 	}
 	
 	public void switchToDReport() {
-		remove(panel);
+		panel.setVisible(false);
 		add(dReport);
 	}
 }

@@ -24,8 +24,8 @@ public class DBConnector {
 		try {
 			//Class.forName("com.mysql.jdbc.Driver");
 
-			user 		= "paul";
-			password 	= "barbaque";
+			user 		= "peter";
+			password 	= "password";
 			host	 	= "localhost";
 
 			if (user == null || password == null || host == null)

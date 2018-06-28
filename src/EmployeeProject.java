@@ -10,6 +10,9 @@ public class EmployeeProject {
 	
 	public static void main(String args[]) {
 	ArrayList<Department> deps = DBConnector.getDepartments();
+	
+	
+	
 //		for(Department d: deps)
 //		{
 //			System.out.println(d.getName());
