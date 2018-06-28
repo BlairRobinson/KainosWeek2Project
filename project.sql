@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: company_database
+-- Host: 127.0.0.1    Database: company
 -- ------------------------------------------------------
 -- Server version	5.7.22-0ubuntu18.04.1
 
@@ -59,7 +59,7 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`employee_id`),
   KEY `fk_employee_in_department` (`department_id`),
   CONSTRAINT `fk_employee_in_department` FOREIGN KEY (`department_id`) REFERENCES `department` (`department_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,8 +68,34 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (1,'Arrron','Smith','1 Park Inn Lane','PC048634W','26495719461','23-54-90',20000.00,1),(2,'Jonathan','Owens','23 Chichester Street','PD784532A','10345376492','91-34-67',21500.00,2),(3,'Christopher','McNeil','1 Upper James Street','PA125173B','34591239865','45-81-78',350000.00,3),(4,'Leonard','Hawkins','12 Grafton Street','PC784525C','10456329867','57-36-14',30000.00,1);
+INSERT INTO `employee` VALUES (1,'Arrron','Smith','1 Park Inn Lane','PC048634W','26495719461','23-54-90',20000.00,1),(2,'Jonathan','Owens','23 Chichester Street','PD784532A','10345376492','91-34-67',21500.00,2),(3,'Christopher','McNeil','1 Upper James Street','PA125173B','34591239865','45-81-78',350000.00,3),(4,'Leonard','Hawkins','12 Grafton Street','PC784525C','10456329867','57-36-14',30000.00,1),(5,'James','Smith','1 Park Inn Way','234567891','23432145654','23-09-89',40000.00,1);
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sales_employee`
+--
+
+DROP TABLE IF EXISTS `sales_employee`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sales_employee` (
+  `employee_id` smallint(6) NOT NULL,
+  `sales_total` decimal(11,2) DEFAULT NULL,
+  `commission_rate` decimal(11,2) DEFAULT NULL,
+  PRIMARY KEY (`employee_id`),
+  CONSTRAINT `fk_sales_emp_id` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sales_employee`
+--
+
+LOCK TABLES `sales_employee` WRITE;
+/*!40000 ALTER TABLE `sales_employee` DISABLE KEYS */;
+INSERT INTO `sales_employee` VALUES (1,1500.00,0.20),(2,2310.00,0.18),(3,3020.00,0.16);
+/*!40000 ALTER TABLE `sales_employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -81,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-28 11:04:00
+-- Dump completed on 2018-06-28 14:49:52

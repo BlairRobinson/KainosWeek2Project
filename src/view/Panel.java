@@ -38,9 +38,9 @@ public class Panel extends JPanel {
 		button.setActionCommand("Submit");
 		button.addActionListener(new ButtonClickListener());
 		
-		/*JButton switchButton = new JButton("Department Report");
-		button.setActionCommand("switch");
-		button.addActionListener(new ButtonClickListener());*/
+		JButton switchButton = new JButton("Department Report");
+		switchButton.setActionCommand("switch");
+		switchButton.addActionListener(new ButtonClickListener());
 		
 		fNameField = new JTextField(20);
 		lNameField = new JTextField(20);
@@ -73,7 +73,7 @@ public class Panel extends JPanel {
 		body = new JLabel("", JLabel.CENTER);
 		
 		add(body);
-		//add(switchButton);
+		add(switchButton);
 	}
 
 	public void paint(Graphics g) {
