@@ -1,16 +1,35 @@
+import java.util.ArrayList;
+
+import DB.DBConnector;
+import Middle.Department;
 import Middle.Employee;
+import view.Frame;
 
 public class EmployeeProject {
+
+	ArrayList<Department> departments = new ArrayList<>();
+	
+	public EmployeeProject() {
+		Employee e = new Employee("FName", "LName", "Address", "12345678C", "01928384", "237845", 28000f, 2, 10);
+		
+		Department d = new Department("Test Department");
+		d.addEmployee(e);
+		
+		departments.add(d);
+		
+		Frame frame = new Frame(departments);
+	}
+	
+	public ArrayList<Department> getDepartments(){
+		return departments;
+	}
 	
 	public static void main(String args[]) {
-//		ArrayList<Department> deps = DBConnector.getDepartments();
-//		for(Department d: deps)
-//		{
-//			System.out.println(d.getName());
-////			Frame frame = new Frame(d);
-//		}
-		
-		Employee test = new Employee("James", "Smith", "1 Park Inn Way", "234567891", "23432145654", "23-09-89", 40000, 1, 5 );
-		DBConnector.addEmployee(test);
+		new EmployeeProject();
+		ArrayList<Employee> bigEmps = DBConnector.getEmployees();
+		for(Employee e: bigEmps)
+		{
+			//System.out.println(e.getFName());
+		}
 	}
 }
